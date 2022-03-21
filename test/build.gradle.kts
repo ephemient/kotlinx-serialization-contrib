@@ -1,17 +1,39 @@
 plugins {
-    kotlin("jvm")
+    kotlin("multiplatform")
     kotlin("plugin.serialization")
     alias(libs.plugins.ksp)
 }
 
 kotlin {
-    sourceSets.main {
-        kotlin.srcDir("build/generated/ksp/main/kotlin")
+    jvm()
+    js(IR) {
+        nodejs()
     }
-    sourceSets.test {
-        kotlin.srcDir("build/generated/ksp/test/kotlin")
+
+    sourceSets {
+        getByName("commonMain") {
+            dependencies {
+                compileOnly(projects.annotations)
+                implementation(libs.kotlinx.serialization)
+            }
+        }
+
+        getByName("commonTest") {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.kotlinx.serialization.json)
+            }
+        }
+
+        getByName("jvmTest") {
+            dependencies {
+                implementation(kotlin("test-junit5"))
+                implementation(libs.junit.jupiter)
+            }
+        }
     }
-    target {
+
+    targets.all {
         compilations.all {
             kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         }
@@ -19,15 +41,9 @@ kotlin {
 }
 
 dependencies {
-    compileOnly(projects.annotations)
-    implementation(libs.kotlinx.serialization)
-
     ksp(projects.processor)
-
-    testImplementation(libs.junit.jupiter)
-    testImplementation(libs.kotlinx.serialization.json)
 }
 
-tasks.test {
+tasks.named<Test>("jvmTest") {
     useJUnitPlatform()
 }

@@ -38,7 +38,6 @@ import kotlinx.serialization.encoding.Encoder
 
 class GenerateEnumSerializerProcessor(environment: SymbolProcessorEnvironment) : SymbolProcessor {
     private val codeGenerator = environment.codeGenerator
-    private val logger = environment.logger
 
     @OptIn(ExperimentalSerializationApi::class, KotlinPoetKspPreview::class, KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
