@@ -19,4 +19,6 @@ enum class Example {
     @SerialName("FORCE")
     Force,
     ;
+
+    override fun toString(): String = toSerialName()
 }
