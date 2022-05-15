@@ -1,7 +1,11 @@
 plugins {
     kotlin("jvm")
     kotlin("kapt")
+    id("org.jetbrains.dokka")
+    id("com.github.ephemient.kotlinx-serialization-contrib.build.publishing")
 }
+
+description = "GenerateEnumSerializer KSP processor"
 
 kotlin {
     target {

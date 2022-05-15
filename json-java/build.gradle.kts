@@ -2,7 +2,11 @@ plugins {
     id("com.android.library")
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id("org.jetbrains.dokka")
+    id("com.github.ephemient.kotlinx-serialization-contrib.build.publishing")
 }
+
+description = "JSON-java format for kotlinx.serialization"
 
 android {
     compileSdk = 31
@@ -14,7 +18,9 @@ android {
 
 kotlin {
     jvm()
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
 
     sourceSets {
         getByName("commonMain") {
