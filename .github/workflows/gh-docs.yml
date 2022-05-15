@@ -1,0 +1,46 @@
+name: Dokka
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: main
+    - uses: actions/checkout@v2
+      with:
+        ref: gh-docs
+        path: gh-docs
+    - uses: actions/setup-java@v2
+      with:
+        distribution: temurin
+        java-version: 11
+    - uses: gradle/gradle-build-action@v2
+      with:
+        build-root-directory: main
+        arguments: dokkaGfm
+    - name: Copy
+      run: |
+        rm -rf gh-docs/dokka/
+        names=()
+        for src in main/**/build/dokka/gfm; do
+          name=${src#main}
+          name=${name%/build/dokka/gfm}
+          name=${name#/}
+          names+=("$name")
+          mkdir -p "gh-docs/dokka/$name"
+          rsync --recursive --verbose "main/$name/build/dokka/gfm/" "gh-docs/dokka/$name"
+        done
+        for name in "${names[@]}"; do
+          printf '[%s](dokka/%s)\n' "$name" "$name"
+        done > gh-docs/dokka.md
+    - name: Commit
+      uses: EndBug/add-and-commit@v9
+      with:
+        cwd: gh-docs
+        message: 'Dokka ${{ github.sha }}'
