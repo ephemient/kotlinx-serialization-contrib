@@ -1,10 +1,13 @@
 [versions]
 autoService = "1.0.1"
+junit4 = "4.13.2"
 junit-jupiter = "5.8.2"
 kotlin = "1.6.10"
-kotlinpoet = "1.10.2"
+kotlinpoet = "1.11.0"
 kotlinx-serialization = "1.3.2"
 ksp = "1.6.10-1.0.4"
+org-json = "20220320"
+robolectric = "4.8.1"
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
@@ -12,8 +15,11 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 [libraries]
 auto-service = { module = "com.google.auto.service:auto-service", version.ref = "autoService" }
 auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoService" }
+junit4 = { module = "junit:junit", version.ref = "junit4" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinpoet" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+org-json = { module = "org.json:json", version.ref = "org-json" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
