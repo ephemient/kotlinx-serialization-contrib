@@ -23,7 +23,6 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.buildCodeBlock
-import com.squareup.kotlinpoet.ksp.KotlinPoetKspPreview
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -39,7 +38,7 @@ import kotlinx.serialization.encoding.Encoder
 class GenerateEnumSerializerProcessor(environment: SymbolProcessorEnvironment) : SymbolProcessor {
     private val codeGenerator = environment.codeGenerator
 
-    @OptIn(ExperimentalSerializationApi::class, KotlinPoetKspPreview::class, KspExperimental::class)
+    @OptIn(ExperimentalSerializationApi::class, KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
         for (enum in resolver.getSymbolsWithAnnotation(GenerateEnumSerializer::class.qualifiedName!!, false)) {
             if (enum !is KSClassDeclaration || enum.classKind != ClassKind.ENUM_CLASS) continue

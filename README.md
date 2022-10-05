@@ -18,9 +18,9 @@ To use, add the annotation and processor to `build.gradle`.
 
 ```groovy
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.10'
-    id 'com.google.devtools.ksp' version '1.6.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.20'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.20'
+    id 'com.google.devtools.ksp' version '1.7.20-1.0.6'
 }
 
 repositories {
@@ -34,9 +34,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.ephemient.kotlinx-serialization-contrib:annotations:0.0.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2'
-    ksp 'com.github.ephemient.kotlinx-serialization-contrib:processor:0.0.1'
+    implementation 'com.github.ephemient.kotlinx-serialization-contrib:annotations:0.0.2-SNAPSHOT'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.2'
+    ksp 'com.github.ephemient.kotlinx-serialization-contrib:processor:0.0.2-SNAPSHOT'
 }
 ```
 
@@ -75,6 +75,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.ephemient.kotlinx-serialization-contrib:json-java:0.0.1'
+    implementation 'com.github.ephemient.kotlinx-serialization-contrib:json-java:0.0.2-SNAPSHOT'
 }
 ```

@@ -14,7 +14,6 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.ksp.KotlinPoetKspPreview
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.writeTo
 import kotlinx.serialization.SerialName
@@ -23,7 +22,7 @@ import kotlinx.serialization.Serializable
 class EnumSerialNamesProcessor(environment: SymbolProcessorEnvironment) : SymbolProcessor {
     private val codeGenerator = environment.codeGenerator
 
-    @OptIn(KotlinPoetKspPreview::class, KspExperimental::class)
+    @OptIn(KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
         for (enum in resolver.getSymbolsWithAnnotation(Serializable::class.qualifiedName!!, false)) {
             if (enum !is KSClassDeclaration || enum.classKind != ClassKind.ENUM_CLASS) continue
