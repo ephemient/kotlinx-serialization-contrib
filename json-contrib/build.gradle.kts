@@ -21,11 +21,14 @@ kotlin {
     android {
         publishLibraryVariants("release")
     }
+    js(IR) {
+        nodejs()
+    }
 
     sourceSets {
         getByName("commonMain") {
             dependencies {
-                implementation(libs.kotlinx.serialization)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 
@@ -61,12 +64,6 @@ kotlin {
                 implementation(libs.junit4)
                 implementation(libs.robolectric)
             }
-        }
-    }
-
-    targets.all {
-        compilations.all {
-            kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         }
     }
 }

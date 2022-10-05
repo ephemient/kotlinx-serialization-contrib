@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package com.github.ephemient.kotlinx.serialization.contrib.jsonjava
+package com.github.ephemient.kotlinx.serialization.contrib.json
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -20,9 +20,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
 
-sealed class JSON private constructor(
-    override val serializersModule: SerializersModule,
-) : StringFormat {
+sealed class JSON : StringFormat {
     /**
      * Serializes and encodes the given [value] to JSON using the given [serializer].
      * @return [JSONObject], [JSONArray], [Boolean], [Number], [String], or [JSONObject.NULL]
@@ -49,9 +47,12 @@ sealed class JSON private constructor(
         fun build(): JSON = Impl(serializersModule)
     }
 
-    private class Impl(serializersModule: SerializersModule) : JSON(serializersModule)
+    private class Impl(override val serializersModule: SerializersModule) : JSON()
 
-    companion object Default : JSON(serializersModule = EmptySerializersModule)
+    companion object Default : JSON() {
+        override val serializersModule: SerializersModule
+            get() = EmptySerializersModule()
+    }
 }
 
 inline fun JSON(from: JSON = JSON.Default, builderAction: JSON.Builder.() -> Unit = {}): JSON =

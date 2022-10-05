@@ -32,12 +32,6 @@ kotlin {
             }
         }
     }
-
-    targets.all {
-        compilations.all {
-            kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-        }
-    }
 }
 
 dependencies {

@@ -40,7 +40,7 @@ dependencies {
 }
 ```
 
-## JSON-java
+## json-contrib/JSON
 
 This is a [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) format which uses [JSON-java](https://github.com/stleary/JSON-java) instead of `kotlinx.serialization.json`. Usage is similar to other formats.
 
@@ -61,7 +61,7 @@ JSON {
 }
 ```
 
-This can be found in the `json-java` artifact.
+This can be found in the `json-contrib` artifact.
 
 ```groovy
 repositories {
@@ -78,3 +78,11 @@ dependencies {
     implementation 'com.github.ephemient.kotlinx-serialization-contrib:json-java:0.0.2-SNAPSHOT'
 }
 ```
+
+## json-contrib/Serde
+
+This is a [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) format which works on [Serde](https://serde.rs/)-like JSON.
+
+## json-contrib/AnyFormat
+
+This is a [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) format which serializes to/deserializes from (lists/maps of) primitives. It can also serialize from/deserialize to JsonElement and related types.

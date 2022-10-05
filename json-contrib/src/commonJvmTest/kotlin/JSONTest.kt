@@ -1,4 +1,4 @@
-package com.github.ephemient.kotlinx.serialization.contrib.jsonjava
+package com.github.ephemient.kotlinx.serialization.contrib.json
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

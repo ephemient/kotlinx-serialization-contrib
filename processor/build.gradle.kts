@@ -8,11 +8,6 @@ plugins {
 description = "GenerateEnumSerializer KSP processor"
 
 kotlin {
-    target {
-        compilations.all {
-            kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-        }
-    }
 }
 
 dependencies {

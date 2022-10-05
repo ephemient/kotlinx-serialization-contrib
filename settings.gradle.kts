@@ -12,4 +12,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "kotlinx-serialization-contrib"
-include(":annotations", ":json-java", ":processor", ":test")
+include(":annotations", ":json-contrib", ":processor", ":test")
